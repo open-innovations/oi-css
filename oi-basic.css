@@ -16,11 +16,11 @@ a { color: #18AD87; text-decoration: underline; }
 a:hover, a:focus { text-decoration: underline; }
 a:visited { color: inherit; }
 h1, h2, h3, h4, .title, .subtitle { font-family: var(--oi-title-fontstack); line-height: 1em; }
+h1 + *, h2 + *, h3 + *, p + *, iframe + *, figure + *, ul + *, ol + *, .block + *, .padded-bottom + * { margin-top: 1rem; }
 h1, .title { font-size: 2em; margin-top: 2rem; font-weight: 600; }
 h2 { font-size: 1.7em; margin-top: 2rem; font-weight: 500; }
 h3 { font-size: 1.4em; margin-top: 2rem; }
 h1:first-child, h2:first-child, h3:first-child, .title { margin-top: 0; }
-h1 + *, h2 + *, h3 + *, p + *, iframe + *, figure + *, ul + *, ol + *, .block + *, .padded-bottom + * { margin-top: 1rem; }
 * > *:first-child { margin-top: 0; }
 strong { font-weight: 700; }
 em { font-style: italic; }
@@ -47,12 +47,14 @@ header nav ul {
 	display: flex;
 }
 header nav ul li { display: inline-block; }
-header nav ul > li > a { padding: 0.5em 1em; display: inline-block; width: 100%; color: inherit; }
-header nav ul > li > a:hover, header nav ul > li > a:focus { background: white; color: black; }
+header nav ul > li > a { padding: 0.5em 1em; display: inline-block; width: 100%; color: inherit; font-family: var(--oi-title-fontstack); }
+header nav ul > li > a:hover, header nav ul > li > a:focus,header nav ul > li > a[aria-selected=true] { background: white; color: black; }
 header a { text-decoration: none; }
 footer { width: 100%; padding-bottom: 3em; }
 footer a { color: inherit; }
-footer h2 + p { margin-top: 1em; }
+footer > div { display: flex; gap: 1rem; }
+footer > div > div {  flex-grow: 1; }
+footer > div > div:last-child { text-align: right; }
 
 /* Some common styling classes */
 .holder { position: relative; width: 1080px; max-width: 100%; margin: auto; }
@@ -62,7 +64,7 @@ footer h2 + p { margin-top: 1em; }
 .doublepadded { padding: 2em; }
 .spaced { margin-bottom: 1em; }
 .centred { text-align: center; }
-.tallpadded { padding-top: 3em; padding-bottom: 3em; }
+.tallpadded { padding-block: 3em; }
 
 .skip-to-content-link { position: absolute; top: -3rem; right: 0.5rem; z-index: 2000; transition: top 0.3s; padding: 0.5rem 1rem; }
 .skip-to-content-link:focus { top: 0.25rem; }
@@ -76,4 +78,8 @@ footer h2 + p { margin-top: 1em; }
 
 @media only screen and (max-width: 800px) {
 	.doublepadded { padding: 1em; }
+	.tallpadded { padding-block: 2rem; }
+	footer > div { display: block; }
+	footer > div > div { margin-bottom: 1rem; }
+	footer > div > div:last-child { text-align: inherit; margin-bottom: 0; }
 }
