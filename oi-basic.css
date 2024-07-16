@@ -12,7 +12,7 @@ html, body {
 	color: #333;
 	line-height: 1.44em;
 }
-a { color: #18AD87; text-decoration: underline; }
+a { color: #18AD87; text-decoration: underline; display: inline-block; }
 a:hover, a:focus { text-decoration: underline; }
 a:visited { color: inherit; }
 h1, h2, h3, h4, .title, .subtitle { font-family: var(--oi-title-fontstack); line-height: 1em; }
@@ -32,7 +32,7 @@ pre code { padding: 0; }
 ul { list-style: disc; }
 ol { list-style: decimal; }
 ul { padding: 0; margin-left: 2em; }
-section { padding: 2em 0; }
+section { padding-block: 2em; }
 button, .button { border: 0px; font-size: 1em; background-color: #efefef; color: black; text-decoration: none; display: inline-block; padding: 0.5em 1em; cursor: pointer; vertical-align: top; line-height: 1.25em; }
 a.button:hover, button:hover, button:focus, a.button:focus { background-color: #333333!important; color: #efefef!important; }
 
@@ -58,22 +58,33 @@ footer > div > div:last-child { text-align: right; }
 
 /* Some common styling classes */
 .holder { position: relative; width: 1080px; max-width: 100%; margin: auto; }
-.holder.padded > *:last-child { margin-bottom: 0; }
-.padded { padding: 1em; }
-.padded-bottom { padding: 1em; margin-bottom: 1em; }
-.doublepadded { padding: 2em; }
-.spaced { margin-bottom: 1em; }
+.holder > *:last-child { margin-bottom: 0; }
+.padded { padding: 1rem; }
+.padded-bottom { padding: 1rem; margin-bottom: 1rem; }
+.padded-inline { padding-inline: 1rem; }
+.doublepadded { padding: 2rem; }
+.spaced { margin-bottom: 1rem; }
 .centred { text-align: center; }
-.tallpadded { padding-block: 3em; }
+.tallpadded { padding-block: 3rem; }
 
 .skip-to-content-link { position: absolute; top: -3rem; right: 0.5rem; z-index: 2000; transition: top 0.3s; padding: 0.5rem 1rem; }
 .skip-to-content-link:focus { top: 0.25rem; }
 
-.grid { display: grid; grid-template-columns: repeat(2,1fr); grid-gap: 1em; }
-.grid .pane { background: #f9f9f9; }
-
-@media only screen and (max-width: 1080px) {
-	.grid { grid-template-columns: 100%; }
+.grid {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0.5em;
+	align-items: stretch;
+	list-style: none;
+	margin-inline: 0;
+	margin-bottom: 1em;
+}
+.grid > li { flex-grow: 1; width: 300px; }
+.grid > li > * {
+	padding: 2em;
+	text-decoration: none;
+	display: block;
+	height: 100%;
 }
 
 @media only screen and (max-width: 800px) {
